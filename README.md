@@ -57,7 +57,7 @@ All per-sample jobs depend on the index build completing successfully. Intermedi
 | Tool | Container | Version |
 |------|-----------|---------|
 | STAR | `star_2.7.11b--h43eeafb_0.sif` | 2.7.11b |
-| Picard | `picard.sif` | — |
+| Picard | `picard.sif` | 3.4.0-12 |
 | GATK | `gatk_4.5.0.0.sif` | 4.5.0.0 |
 | Samtools | `samtools_v1.3.1_cv4.sif` | 1.3.1 |
 
