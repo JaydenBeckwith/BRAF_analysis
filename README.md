@@ -20,17 +20,17 @@ VAF is calculated from the AD (allelic depth) field in the VCF genotype column.
 
 ### Analyses performed
 
-1. **BRAF V600 heatmap** — per-patient status (WT / V600E / V600K/R) across timepoints, sorted by number of V600-positive timepoints, with DNA VAF and tumour cellularity side annotations
-2. **Detection rate by response** — proportion of samples with a detectable V600 mutation at each timepoint, stratified by MPR vs NMPR (with Wilson confidence intervals)
-3. **Detection rate by treatment arm** — same as above, faceted by treatment arm (e.g. PD1 vs PD1+LAG3)
-4. **RNA VAF trajectories** — per-patient RNA VAF over time, with group medians, stratified by response and treatment arm
-5. **RNA VAF vs DNA VAF comparison** — correlation of RNA-derived VAF at baseline with DNA-based VAF from Sequenza
+1. **BRAF V600 heatmap** per-patient status (WT / V600E / V600K/R) across timepoints, sorted by number of V600-positive timepoints, with DNA VAF and tumour cellularity side annotations
+2. **Detection rate by response** proportion of samples with a detectable V600 mutation at each timepoint, stratified by MPR vs NMPR (with Wilson confidence intervals)
+3. **Detection rate by treatment arm** same as above, faceted by treatment arm (e.g. PD1 vs PD1+LAG3)
+4. **RNA VAF trajectories** per-patient RNA VAF over time, with group medians, stratified by response and treatment arm
+5. **RNA VAF vs DNA VAF comparison** correlation of RNA-derived VAF at baseline with DNA-based VAF from Sequenza
 
-## RNA-Seq Realignment + Variant Calling Pipeline
+## RNA Variant Calling Pipeline
 
 A PBS-based pipeline for RNA-seq variant calling on the NCI Gadi HPC system, following [GATK Best Practices for RNA-seq short variant discovery](https://gatk.broadinstitute.org/hc/en-us/articles/360035531192-RNAseq-short-variant-discovery-SNPs-Indels).
 
-**Author:** Jayden Beckwith (Melanoma Institute Australia / University of Sydney)
+**Author:** Jayden Beckwith
 
 Adapted from Patrick Terrematte's pipeline for HPC of NPAD/UFRN ([original](http://hungria.imd.ufrn.br/~terrematte/aDNA/rna_seq_variant_pipeline.sh)), based on [Anand M.'s GATK RNA-seq variant pipeline](https://gist.github.com/PoisonAlien/c6c03539cf4b1ac41cf1).
 
@@ -38,13 +38,13 @@ Adapted from Patrick Terrematte's pipeline for HPC of NPAD/UFRN ([original](http
 
 ## Overview
 
-The pipeline takes pre-aligned RNA-seq BAMs, converts them back to FASTQ, performs STAR two-pass alignment against GRCh38, and runs the full GATK variant calling workflow. Downstream analysis includes longitudinal BRAF V600 mutation tracking across treatment timepoints. It is designed for large cohorts with built-in checkpoint/resume support and PBS job scheduling.
+The pipeline takes BAMs (back to FASTQ) or FASTQ, performs STAR two-pass alignment against GRCh38, and runs the full GATK variant calling workflow. Downstream analysis includes longitudinal BRAF V600 mutation tracking across treatment timepoints. It is designed for large cohorts with built-in checkpoint/resume support and PBS job scheduling.
 
 ### Pipeline stages
 
-1. **STAR genome index build** — single job generating a STAR index from GRCh38 primary assembly + GENCODE v46 GTF
-2. **FASTQ extraction + STAR two-pass alignment** — per-sample: name-sort → SamToFastq → STAR `--twopassMode Basic`
-3. **Variant calling** — per-sample: AddOrReplaceReadGroups → MarkDuplicates → SplitNCigarReads → BaseRecalibrator → ApplyBQSR → HaplotypeCaller → VariantFiltration → VariantsToTable
+1. **STAR genome index build** single job generating a STAR index from GRCh38 primary assembly + GENCODE v46 GTF
+2. **FASTQ extraction + STAR two-pass alignment** per-sample: name-sort → SamToFastq → STAR `--twopassMode Basic`
+3. **Variant calling** per-sample: AddOrReplaceReadGroups → MarkDuplicates → SplitNCigarReads → BaseRecalibrator → ApplyBQSR → HaplotypeCaller → VariantFiltration → VariantsToTable
 
 All per-sample jobs depend on the index build completing successfully. Intermediate files are cleaned up automatically once all outputs are verified.
 
@@ -104,19 +104,6 @@ wget https://storage.googleapis.com/genomics-public-data/resources/broad/hg38/v0
 wget https://storage.googleapis.com/genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dict --no-check-certificate
 ```
 
-### Option C: NCBI GRCh38.p13
-
-```bash
-wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz --no-check-certificate
-gunzip GCA_000001405.28_GRCh38.p13_genomic.fna.gz
-
-# Build index and dictionary
-samtools faidx GCA_000001405.28_GRCh38.p13_genomic.fna
-
-picard CreateSequenceDictionary \
-    R=GCA_000001405.28_GRCh38.p13_genomic.fna \
-    O=GCA_000001405.28_GRCh38.p13_genomic.dict
-```
 
 ### Known sites for BQSR
 
