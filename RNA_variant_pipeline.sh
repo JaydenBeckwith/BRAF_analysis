@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# RNA-Seq Realignment + Variant Calling Pipeline — PBS
+# RNA-Seq Realignment + Variant Calling Pipeline - PBS
 #
 # Three stages:
 #   1) Build STAR index from chr* GRCh38 FASTA + GENCODE GTF (single job)
@@ -17,6 +17,17 @@
 # Each step checks for its expected output file before running.
 # If the output already exists (non-empty), the step is skipped.
 # Timed-out or failed jobs can be resubmitted and will resume automatically.
+#
+# AUTHOR: Jayden Beckwith for HPC of GADI and hg38
+#
+# Adapted work from Patrick Terrematte for HPC of NPAD/UFRN and hg38:
+# http://hungria.imd.ufrn.br/~terrematte/aDNA/rna_seq_variant_pipeline.sh
+#
+# Based on pieline Anand M.
+# RNA-Seq variant calling pieline according to GATK Best practices.
+# https://www.broadinstitute.org/gatk/guide/article?id=3891
+# Full Pipeline of Gatk of hg19:
+# https://gist.github.com/PoisonAlien/c6c03539cf4b1ac41cf1
 
 set -euo pipefail
 
