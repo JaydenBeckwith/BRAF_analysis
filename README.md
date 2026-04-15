@@ -1,5 +1,5 @@
 # BRAF_analysis
-Analysing BRAF V600 mutations in neoadjuvant cohort 
+Analysing BRAF V600 mutations in neoadjuvant RNA
 
 ### BRAF V600 mutation tracking
 
