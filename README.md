@@ -20,7 +20,7 @@ VAF is calculated from the AD (allelic depth) field in the VCF genotype column.
 
 ### Analyses performed
 
-1. **BRAF V600 heatmap** per-patient status (WT / V600E / V600K/R) across timepoints, sorted by number of V600-positive timepoints, with DNA VAF and tumour cellularity side annotations
+1. **BRAF V600 heatmap** per-patient status (WT(not detected) / V600E / V600K/R) across timepoints, sorted by number of V600-positive timepoints, with DNA VAF and tumour cellularity side annotations
 2. **Detection rate by response** proportion of samples with a detectable V600 mutation at each timepoint, stratified by MPR vs NMPR (with Wilson confidence intervals)
 3. **Detection rate by treatment arm** same as above, faceted by treatment arm (e.g. PD1 vs PD1+LAG3)
 4. **RNA VAF trajectories** per-patient RNA VAF over time, with group medians, stratified by response and treatment arm
