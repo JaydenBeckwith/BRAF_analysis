@@ -25,6 +25,7 @@ VAF is calculated from the AD (allelic depth) field in the VCF genotype column.
 3. **Detection rate by treatment arm** same as above, faceted by treatment arm (e.g. PD1 vs PD1+LAG3)
 4. **RNA VAF trajectories** per-patient RNA VAF over time, with group medians, stratified by response and treatment arm
 5. **RNA VAF vs DNA VAF comparison** correlation of RNA-derived VAF at baseline with DNA-based VAF from Sequenza
+6. **Check RNA expression** of key markers like BRAF, SOX10, MLANA as purity reference proxy
 
 ## RNA Variant Calling Pipeline
 
