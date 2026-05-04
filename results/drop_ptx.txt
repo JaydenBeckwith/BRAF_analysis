@@ -1,0 +1,65 @@
+Total patients: 60
+
+--- Original (AF>0 & cell≥0.2) ---
+Kept 40 | Dropped 20 | MPR: 13 | NMPR: 27
+Dropped patients:
+melpin  braf_v600_AF  cellularity  MPR
+ 18369      0.411290         0.15  MPR
+ 36029      0.000000         0.14  MPR
+ 43306      0.166667         0.10 NMPR
+ 45452      0.000000         0.72  MPR
+ 46898      0.000000         0.20  MPR
+ 47711      0.175258         0.12 NMPR
+ 48210      0.117647         0.10 NMPR
+ 49461      0.000000         0.27  MPR
+ 49573           NaN          NaN  MPR
+ 50016      0.000000         0.35  MPR
+ 50149      0.000000         0.27  MPR
+ 50873      0.122807         0.10 NMPR
+ 51684      0.000000         0.26 NMPR
+ 52558      0.000000         0.33 NMPR
+ 52898      0.222222         0.16  MPR
+ 53191      0.076087         0.16  MPR
+ 53776      0.185185         0.12  MPR
+ 53823      0.047619         0.10 NMPR
+ 53834      0.000000         0.28 NMPR
+ 55472      0.000000         0.32  MPR
+
+--- Option 1 (AF>0 & cell≥0.1) ---
+Kept 49 | Dropped 11 | MPR: 17 | NMPR: 32
+Dropped patients:
+melpin  braf_v600_AF  cellularity  MPR
+ 36029           0.0         0.14  MPR
+ 45452           0.0         0.72  MPR
+ 46898           0.0         0.20  MPR
+ 49461           0.0         0.27  MPR
+ 49573           NaN          NaN  MPR
+ 50016           0.0         0.35  MPR
+ 50149           0.0         0.27  MPR
+ 51684           0.0         0.26 NMPR
+ 52558           0.0         0.33 NMPR
+ 53834           0.0         0.28 NMPR
+ 55472           0.0         0.32  MPR
+
+--- Option 2 (cell≥0.2 only) ---
+Kept 49 | Dropped 11 | MPR: 19 | NMPR: 30
+Dropped patients:
+melpin  braf_v600_AF  cellularity  MPR
+ 18369      0.411290         0.15  MPR
+ 36029      0.000000         0.14  MPR
+ 43306      0.166667         0.10 NMPR
+ 47711      0.175258         0.12 NMPR
+ 48210      0.117647         0.10 NMPR
+ 49573           NaN          NaN  MPR
+ 50873      0.122807         0.10 NMPR
+ 52898      0.222222         0.16  MPR
+ 53191      0.076087         0.16  MPR
+ 53776      0.185185         0.12  MPR
+ 53823      0.047619         0.10 NMPR
+
+--- Option 3 (cell≥0.2 OR AF>0) ---
+Kept 58 | Dropped 2 | MPR: 23 | NMPR: 35
+Dropped patients:
+melpin  braf_v600_AF  cellularity MPR
+ 36029           0.0         0.14 MPR
+ 49573           NaN          NaN MPR
